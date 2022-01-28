@@ -25,7 +25,9 @@ struct VideoListState: Equatable{
 enum VideoListAction: Equatable {
     case onAppear
     case selectTag(Query)
-    case videoDidTap(VideoAction)
+    case videoCardDidTap(Video)
+    case videoView(VideoAction)
+    case videoViewDismissed
     case videosResponse(Result<VideoResponseDTO, VBAError>)
 }
 
@@ -39,12 +41,13 @@ let videoListReducer = Reducer<VideoListState, VideoListAction, VideoListEnviron
         .optional()
         .pullback(
             state: \.videoState,
-            action: /VideoListAction.videoDidTap,
+            action: /VideoListAction.videoView,
             environment: {
                 VideoEnvironment(mainQueue: $0.mainQueue)
             }
         ),
     .init{ state, action, env in
+        struct VideoListID: Hashable {}
         switch action {
         case let .selectTag(tag):
             state.selectedQuery = tag
@@ -52,6 +55,14 @@ let videoListReducer = Reducer<VideoListState, VideoListAction, VideoListEnviron
                 .getVideoList(.init(query: state.selectedQuery.rawValue))
                 .receive(on: env.mainQueue)
                 .catchToEffect(VideoListAction.videosResponse)
+            
+        case let .videoCardDidTap(video):
+            state.videoState = VideoState(video: video)
+            return .none
+            
+        case .videoViewDismissed:
+            state.videoState = nil
+            return .cancel(id: VideoListID())
             
         case let .videosResponse(.success(res)):
             state.videos = res.videos
@@ -67,7 +78,7 @@ let videoListReducer = Reducer<VideoListState, VideoListAction, VideoListEnviron
                 .receive(on: env.mainQueue)
                 .catchToEffect(VideoListAction.videosResponse)
             
-        case .videoDidTap:
+        case .videoView:
             return .none
         }
     }

@@ -26,10 +26,6 @@ extension VBAAPI {
         return .requestPlain
     }
     
-    public var validationType: ValidationType{
-        return .successCodes
-    }
-    
     public var headers: [String : String]?{
         return ["Content-Type": "application/json"]
     }
