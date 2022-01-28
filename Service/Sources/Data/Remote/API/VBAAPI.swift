@@ -22,12 +22,11 @@ extension VBAAPI {
         return domain.url + urlPath
     }
     
-    public var task: Task{
-        return .requestPlain
-    }
-    
     public var headers: [String : String]?{
-        return ["Content-Type": "application/json"]
+        return [
+            "Authorization": "563492ad6f9170000100000149b717cd3df54df18bb5f015c1a01d0b",
+            "Content-Type": "application/json"
+        ]
     }
 }
 

@@ -11,4 +11,12 @@ public struct VideoResponseDTO: Equatable, Codable {
     public let totalResults: Int
     public let url: String
     public let videos: [Video]
+    
+    enum CodingKeys: String, CodingKey{
+        case page = "page"
+        case perPage = "per_page"
+        case totalResults = "total_results"
+        case url = "url"
+        case videos = "videos"
+    }
 }

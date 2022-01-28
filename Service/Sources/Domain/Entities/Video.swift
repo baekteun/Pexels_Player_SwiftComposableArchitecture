@@ -12,6 +12,14 @@ public struct Video: Identifiable, Codable, Equatable {
     public let user: User
     public let videoFiles: [VideoFile]
     
+    enum CodingKeys: String, CodingKey{
+        case id
+        case image
+        case duration
+        case user
+        case videoFiles = "video_files"
+    }
+    
     public struct User: Identifiable, Codable {
         public let id: Int
         public let name: String
@@ -29,6 +37,13 @@ public struct Video: Identifiable, Codable, Equatable {
         public let quality: String
         public let fileType: String
         public let link: String
+        
+        enum CodingKeys: String, CodingKey{
+            case id
+            case quality
+            case fileType = "file_type"
+            case link
+        }
     }
     
     public init(id: Int, image: String, duration: Int, user: User, videoFiles: [VideoFile]){

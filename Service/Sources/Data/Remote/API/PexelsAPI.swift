@@ -19,7 +19,7 @@ extension PexelsAPI: VBAAPI{
     public var urlPath: String {
         switch self {
         case .getVideoList:
-            return "search"
+            return "/search"
         }
     }
     
