@@ -25,3 +25,7 @@ enum VideoListAction {
     case videoDidTap(Video)
 }
 
+struct VideoListEnvironment {
+    let pexelsClient: PexelsClient
+    let mainQueue: AnySchedulerOf<DispatchQueue>
+}
