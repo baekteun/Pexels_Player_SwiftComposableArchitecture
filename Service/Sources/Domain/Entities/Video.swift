@@ -5,7 +5,7 @@
 //  Created by 최형우 on 2022/01/28.
 //
 
-public struct Video: Identifiable, Codable {
+public struct Video: Identifiable, Codable, Equatable {
     public let id: Int
     public let image: String
     public let duration: Int
@@ -23,5 +23,10 @@ public struct Video: Identifiable, Codable {
         public let quality: String
         public let fileType: String
         public let link: String
+    }
+    
+    public static func == (lhs: Video, rhs: Video) -> Bool {
+        return lhs.id == rhs.id
+        
     }
 }

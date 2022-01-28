@@ -7,7 +7,21 @@
 //
 
 import ComposableArchitecture
+import Service
+import Foundation
 
 struct VideoListState: Equatable{
+    var selectedQuery: Query
+    var videos: [Video]
     
+    static func == (lhs: VideoListState, rhs: VideoListState) -> Bool {
+        return lhs.videos == rhs.videos
+    }
 }
+
+enum VideoListAction {
+    case viewDidAppear
+    case selectTag(Query)
+    case videoDidTap(Video)
+}
+
