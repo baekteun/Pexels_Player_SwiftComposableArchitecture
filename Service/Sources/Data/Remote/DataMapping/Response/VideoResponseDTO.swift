@@ -5,10 +5,10 @@
 //  Created by 최형우 on 2022/01/28.
 //
 
-struct VideoResponseDTO: Codable {
-    let page: Int
-    let perPage: Int
-    let totalResults: Int
-    let url: String
-    let videos: [Video]
+public struct VideoResponseDTO: Codable {
+    public let page: Int
+    public let perPage: Int
+    public let totalResults: Int
+    public let url: String
+    public let videos: [Video]
 }
