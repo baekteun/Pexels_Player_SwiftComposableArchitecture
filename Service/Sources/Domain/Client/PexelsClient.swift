@@ -7,7 +7,12 @@
 
 import ComposableArchitecture
 
-public struct PexelsClient{
+public final class PexelsClient: BaseClient<PexelsAPI>{
     public var getVideoList: (VideoRequestDTO) -> Effect<VideoResponseDTO, VBAError>
     
+    public init(
+        getVideoList: @escaping(VideoRequestDTO) -> Effect<VideoResponseDTO, VBAError>
+    ) {
+        self.getVideoList = getVideoList
+    }
 }

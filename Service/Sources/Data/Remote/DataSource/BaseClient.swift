@@ -11,10 +11,9 @@ import CombineMoya
 import Combine
 import Foundation
 
-class BaseRemote<API: VBAAPI> {
-    private let provider = MoyaProvider<API>(plugins: [PexelsPlugin()])
-    
-    func request(_ api: API) -> AnyPublisher<Response, Error>{
+public class BaseClient<API: VBAAPI> {
+    static func request(_ api: API) -> AnyPublisher<Response, Error>{
+        let provider = MoyaProvider<API>(plugins: [PexelsPlugin()])
         if(!NetworkReachabilityManager(host: "https://api.pexels.com")!.isReachable) {
             return Future<Moya.Response, Error> { result in
                 result(.failure(VBAError.error(message: "서버에 접속할 수 없습니다.")))

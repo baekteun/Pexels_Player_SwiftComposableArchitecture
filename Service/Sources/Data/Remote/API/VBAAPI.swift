@@ -8,34 +8,34 @@
 import Moya
 import Foundation
 
-protocol VBAAPI: TargetType {
+public protocol VBAAPI: TargetType {
     var domain: APIDomain { get }
     var urlPath: String { get }
 }
 
 extension VBAAPI {
-    var baseURL: URL{
+    public var baseURL: URL{
         return URL(string: "https://api.pexels.com")!
     }
     
-    var path: String{
+    public var path: String{
         return domain.url + urlPath
     }
     
-    var task: Task{
+    public var task: Task{
         return .requestPlain
     }
     
-    var validationType: ValidationType{
+    public var validationType: ValidationType{
         return .successCodes
     }
     
-    var headers: [String : String]?{
+    public var headers: [String : String]?{
         return ["Content-Type": "application/json"]
     }
 }
 
-enum APIDomain: String{
+public enum APIDomain: String{
     case videos
 }
 
