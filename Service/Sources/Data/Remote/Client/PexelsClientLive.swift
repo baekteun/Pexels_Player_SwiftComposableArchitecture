@@ -9,7 +9,7 @@ import ComposableArchitecture
 import CombineMoya
 import Foundation
 
-extension PexelsClient{
+public extension PexelsClient{
     static let live = PexelsClient(
         getVideoList: { req in
             let decoder = JSONDecoder()
@@ -18,7 +18,7 @@ extension PexelsClient{
             return request(.getVideoList(req))
                 .map { data in data.data }
                 .decode(type: VideoResponseDTO.self, decoder: decoder)
-                .mapError{ _ in VBAError.error(message: "동영상을 불러오는 데에 실패했습니다.") }
+                .mapError{ VBAError.error(message: $0.localizedDescription) }
                 .eraseToEffect()
                 
         }

@@ -7,7 +7,7 @@ let project = Project.dynamicFramework(
         .Moya,
         .ComposableArchitecture
     ],
-    deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone, .ipad]),
+    deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
     dependencies: [
         .SPM.CombineMoya,
         .SPM.ComposableArchitecture,

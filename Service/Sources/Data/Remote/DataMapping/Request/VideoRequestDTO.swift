@@ -7,6 +7,12 @@
 
 public struct VideoRequestDTO: Codable{
     public let query: String
-    public let perPage: Int = 10
-    public let orientation: String = "portrait"
+    public let perPage: Int
+    public let orientation: String 
+    
+    public init(query: String, perPage: Int = 10, orientation: String = "portrait"){
+        self.query = query
+        self.perPage = perPage
+        self.orientation = orientation
+    }
 }

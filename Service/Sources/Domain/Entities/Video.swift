@@ -16,6 +16,12 @@ public struct Video: Identifiable, Codable, Equatable {
         public let id: Int
         public let name: String
         public let url: String
+        
+        public init(id: Int, name: String, url: String){
+            self.id = id
+            self.name = name
+            self.url = url
+        }
     }
     
     public struct VideoFile: Identifiable, Codable {
@@ -23,6 +29,14 @@ public struct Video: Identifiable, Codable, Equatable {
         public let quality: String
         public let fileType: String
         public let link: String
+    }
+    
+    public init(id: Int, image: String, duration: Int, user: User, videoFiles: [VideoFile]){
+        self.id = id
+        self.image = image
+        self.duration = duration
+        self.user = user
+        self.videoFiles = videoFiles
     }
     
     public static func == (lhs: Video, rhs: Video) -> Bool {
